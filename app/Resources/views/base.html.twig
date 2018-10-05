@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/nivo-lightbox.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/nivo-lightbox-theme/default/default.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet" media="screen" />
+        <link href="{{ asset('css/owl.theme.css') }}" rel="stylesheet" media="screen" />
+        <link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ path('facebook_homepage') }}">Facebook</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="{{ path('facebook_homepage') }}">Home <span class="sr-only">(current)</span></a>
+               {% if app.user %}
+                   <a class="nav-item nav-link" href="{{ path('fos_user_profile_show') }}">profile</a>
+                   <a class="nav-item nav-link" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{{ path('fos_user_security_login') }}">connection</a>
+                <a class="nav-item nav-link" href="{{ path('fos_user_registration_register') }}">inscription</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+        {% block body %}
+        <div></div>
+
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Age</th>
+                <th>Race</th>
+                <th>Nourriture</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.race }}</td>
+                    <td>{{ user.nourriture }}</td>
+                    <td>
+                        {% if app.user %}
+                            {% if app.user == user %}
+                                <a href="{{ path('fos_user_profile_show', { 'id': user.id }) }}">
+                                    <button type="button" class="btn btn-primary ">
+                                        <span class="glyphicon glyphicon-ok"></span> Profile
+                                    </button>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('user_show', { 'id': user.id }) }}">
+                                    <button type="button" class="btn btn-primary ">
+                                        <span class="glyphicon glyphicon-ok"></span> show
+                                    </button>
+                                </a>
+                                {#{% for amiss in app.user.amis %}#}
+                                    {#{% if amiss == user %}#}
+                                         <a   href="{{ path('ajouter_amis', { 'id': user.id }) }}">
+                                             <button type="button" class="btn btn-success ">
+                                                 <span class="glyphicon glyphicon-ok"></span> Ajouter
+                                             </button>
+                                         </a>
+                                    {#{% endif %}#}
+                                {#{% endfor %}#}
+                            {% endif %}
+                        {% else %}
+                            <a href="{{ path('user_show', { 'id': user.id }) }}">
+                                <button type="button" class="btn btn-primary ">
+                                    <span class="glyphicon glyphicon-ok"></span> show
+                                </button>
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

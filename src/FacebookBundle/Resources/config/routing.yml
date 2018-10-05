@@ -1,0 +1,15 @@
+facebook_user:
+    resource: "@FacebookBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+facebook_homepage:
+    path:     /
+    defaults: { _controller: FacebookBundle:Default:index }
+ajouter_amis:
+    path:     /{id}/ajouter
+    defaults: { _controller: "FacebookBundle:User:ajouteramis" }
+    methods:  [GET, POST]
+supprimer_amis:
+    path:     /{id}/supprimer
+    defaults: { _controller: "FacebookBundle:User:supprimeramis" }
+    methods:  [GET, POST]

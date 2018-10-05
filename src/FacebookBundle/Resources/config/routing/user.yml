@@ -1,0 +1,13 @@
+user_index:
+    path:     /
+    defaults: { _controller: "FacebookBundle:User:index" }
+    methods:  GET
+
+user_show:
+    path:     /{id}/show
+    defaults: { _controller: "FacebookBundle:User:show" }
+    methods:  GET
+
+
+
+
