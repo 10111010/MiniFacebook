@@ -7,6 +7,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")

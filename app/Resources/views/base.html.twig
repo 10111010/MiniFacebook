@@ -75,12 +75,13 @@
                                     {#{% if amiss == user %}#}
                                          <a   href="{{ path('ajouter_amis', { 'id': user.id }) }}">
                                              <button type="button" class="btn btn-success ">
-                                                 <span class="glyphicon glyphicon-ok"></span> Ajouter
+                                                 <span class="glyphicon glyphicon-ok"></span> Ajouter 
                                              </button>
                                          </a>
                                     {#{% endif %}#}
                                 {#{% endfor %}#}
                             {% endif %}
+                           
                         {% else %}
                             <a href="{{ path('user_show', { 'id': user.id }) }}">
                                 <button type="button" class="btn btn-primary ">
@@ -91,6 +92,14 @@
                     </td>
                 </tr>
             {% endfor %}
+
+{% if app.user %}
+<a href="{{ path('ajouter_user_amis') }}">
+                                    <button type="button" class="btn btn-primary ">
+                                        <span class="glyphicon glyphicon-ok"></span> Ajouter user amis 
+                                    </button>
+                                </a>
+                                {% endif %}
             </tbody>
         </table>
         {% endblock %}

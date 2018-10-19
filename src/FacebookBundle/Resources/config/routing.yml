@@ -13,3 +13,7 @@ supprimer_amis:
     path:     /{id}/supprimer
     defaults: { _controller: "FacebookBundle:User:supprimeramis" }
     methods:  [GET, POST]
+ajouter_user_amis:
+    path: /ajouteramis
+    defaults: {_controller: "FacebookBundle:User:ajouteruseramis"}
+    methods: [GET, POST]

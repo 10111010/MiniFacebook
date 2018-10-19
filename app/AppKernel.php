@@ -18,6 +18,11 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FacebookBundle\FacebookBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+             new Nelmio\CorsBundle\NelmioCorsBundle(),
+             
+ 
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
